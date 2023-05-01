@@ -1,0 +1,28 @@
+Digital assignment 2
+Name:DARISI.ANANTHA LOHITH 
+Reg.no: 22BCE1777 
+Paul is provided with a number “x” whose scope will remain throughout the program. Using the concept of recursion, help Paul to write a “C program” for finding the value of (x)n where n should be less than or equal to 5
+Answer: 
+#include <stdio.h>
+int power(int x, int n);
+int main() {
+    int x, n, result;
+    printf("Enter x and n (<= 5):\n");
+    scanf("%d %d", &x, &n);
+    result = power(x, n);
+    printf("%d^%d = %d\n", x, n, result);
+    return 0;
+}
+int power(int x, int n) {
+    if (n == 0) {
+        return 1;
+    } else if (n == 1) {
+        return x;
+    } else if (n <= 5) {
+        return x * power(x, n-1);
+    } else {
+        return -1; 
+    }
+}
+
+
