@@ -1,0 +1,53 @@
+Digital assignment 2
+Name:DARISI.ANANTHA LOHITH
+Reg.no: 22BCE1777
+Write a C Program that reads the input as a string from the user in main ().
+ The input should be a sentence with two words. Pass this string to a function.
+ Inside the function do the following operations:
+ • For the first word, keep only the first character of the word to be in upper case and the rest of the characters in lower case.
+ • For the second word, convert all the characters into upper case letter. 
+ • Print the revised string consisting of the two words in the function itself 
+ • Find the length of the entire string. Print its length in the function itself in the next line of the revised string. Use appropriate string function to print this result in the next line. 
+ • Return the length of the string, if the length is less than 20. Else return the size of the string.
+Consider the input string given by the user is:
+ • “Computer programming” 
+• Revised string to be printed in the function is “Computer PROGRAMMING”
+ What is the significant different between length and size of the string? What is the value that will get returned for the input string that is considered?
+Answer: 
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+int process_string(char *str);
+int main() {
+    char str[100];
+    printf("Enter a sentence with two words:\n");
+    fgets(str, 100, stdin);
+    str[strcspn(str, "\n")] = '\0';
+    int len = process_string(str);
+    printf("Length/Size of the string: %d\n", len);
+    return 0;
+}
+int process_string(char *str) {
+ int len = strlen(str);
+    int i;
+    for (i = 0; i < len; i++) {
+        if (str[i] == ' ') {
+            break;
+        }
+    }
+    str[0] = toupper(str[0]);
+    for (int j = 1; j < i; j++) {
+        str[j] = tolower(str[j]);
+    }
+    for (int j = i+1; j < len; j++) {
+        str[j] = toupper(str[j]);
+    }
+    printf("Revised string: %s\n", str);
+    printf("Length of the string: %ld\n", strlen(str));
+    if (len < 20) {
+        return strlen(str);
+  } else {
+        return len;
+    }
+}
+
