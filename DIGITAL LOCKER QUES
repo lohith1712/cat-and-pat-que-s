@@ -1,0 +1,38 @@
+Digital assignment 2
+Name: DARISI.ANANTHA LOHITH 
+Reg.no: 22BCE1777
+First question: 
+A digital locker in the bank is protected with a security mechanism. To open the locker a password of 9 characters is required. The input characters should be accepted as 3x3 matrix and two diagonal characters of the matrix are concatenated (refer to the example given below) and compared with the password already stored in a character array for authentication. Write a C program to implement this logic for password verification. 
+Input to open the device
+ a b c
+ d e f
+ g h i
+Concatenation of Diagonal characters:
+ aeiceg
+Answer: 
+#include <stdio.h>
+#include <string.h>
+#define PASSWORD "aeiceg"
+int main() {
+    char matrix[3][3], diagonal[5];
+    int i, j, k = 0;
+    printf("Enter the 3x3 matrix:\n");
+    for (i = 0; i < 3; i++) {
+        for (j = 0; j < 3; j++) {
+            scanf(" %c", &matrix[i][j]);
+        }
+    }
+    diagonal[k++] = matrix[0][0];
+    diagonal[k++] = matrix[1][1];
+    diagonal[k++] = matrix[2][2];
+    diagonal[k++] = matrix[0][2];
+    diagonal[k++] = matrix[2][0];
+    if (strcmp(diagonal, PASSWORD) == 0) {
+        printf("Password verified\n");
+    } else {
+        printf("Incorrect password\n");
+    }
+return 0;
+}
+
+
