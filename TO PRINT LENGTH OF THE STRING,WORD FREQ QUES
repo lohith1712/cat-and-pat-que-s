@@ -1,0 +1,73 @@
+Digital assignment 2
+Name:DARIS.ANANTHA LOHITH
+Reg.no: 22BCE1777 
+1)	Write a C program that accepts a string as input, print the length of the string and display the word frequency, then use pointers to find the first repeated and non-repeated character in the string, and print the output:
+POSSIBLE TEST CASES:
+INPUT:
+SUJITHRA
+OUTPUT:
+Length of the string is: 8
+Word frequency is: 8
+No repeated characters found in the string.
+First non-repeated character is: S
+#2 INPUT:
+ASSDFG
+OUTPUT:
+    Length of the string is: 6
+Word frequency is: 5
+First repeated character is: S
+First non-repeated character is: A
+ #3 INPUT:
+RUDRESH
+OUTPUT:
+Length of the string is: 7
+Word frequency is: 6
+First repeated character is: R
+First non-repeated character is: U
+Answer: 
+#include <stdio.h>
+#include <string.h>
+#define MAX_LENGTH 100
+int main() {
+    char str[MAX_LENGTH];
+    int len, freq[256] = {0}, i;
+    char *p, *rep = NULL, *nonrep = NULL;
+printf("Enter a string: ");
+fgets(str, MAX_LENGTH, stdin);
+ len = strlen(str) - 1; 
+    for (p = str; *p != '\0'; p++) {
+        freq[(int)*p]++;
+    }
+printf("Length of the string is: %d\n", len); printf("Word frequency is: ");
+    for (i = 0; i < 256; i++) {
+        if (freq[i] > 0) {
+            printf("%c:%d ", i, freq[i]);
+        }
+    }
+    printf("\n");
+    for (p = str; *p != '\0'; p++) {
+        if (freq[(int)*p] == 1 && nonrep == NULL) {
+            nonrep = p;
+        } else if (freq[(int)*p] > 1 && rep == NULL) {
+            rep = p;
+        }
+        if (nonrep != NULL && rep != NULL) {
+            break;
+        }
+    }
+
+    if (rep == NULL) {
+        printf("No repeated characters found in the string.\n");
+    } else {
+        printf("First repeated character is: %c\n", *rep);
+    }
+
+    if (nonrep == NULL) {
+        printf("No non-repeated characters found in the string.\n");
+    } else {
+        printf("First non-repeated character is: %c\n",*nonrep);
+    }
+
+    return 0;}
+
+
